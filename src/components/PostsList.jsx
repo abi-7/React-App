@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import classes from "./PostsList.module.css";
 import Post from "./Post";
-import Modal from "./Modal.jsx";
-import NewPost from "./NewPost";
 
-function PostsList({ isPosting, onStopPosting }) {
+function PostsList() {
   const [posts, setPosts] = useState([]); //our posts array, setpost updating function
   const [isFetching, setIsFetching] = useState(false);
 
@@ -47,14 +45,6 @@ function PostsList({ isPosting, onStopPosting }) {
   //here we transform every post in post array to a post JSX element
   return (
     <>
-      {isPosting && (
-        <Modal onClose={onStopPosting}>
-          <NewPost 
-          onCancel={onStopPosting} 
-          onAddPost={addPostHandler} 
-          />
-        </Modal>
-      )}
       {!isFetching && posts.length > 0 && (
         <ul className={classes.posts}>
           {posts.map((post) => (
