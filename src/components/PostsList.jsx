@@ -5,18 +5,6 @@ import Post from "./Post";
 function PostsList() {
   const posts = useLoaderData();
 
-  //triggered when post (form) is submitted
-  function addPostHandler(postData) {
-    fetch('http://localhost:8080/posts', {
-      method: 'POST',
-      body: JSON.stringify(postData),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    setPosts((existingPosts) => [postData, ...existingPosts]);
-  }
-
   //in the ul, we want to transform our array
   //of post objects into an array of JSX elements
   //one post element per post object
@@ -34,7 +22,7 @@ function PostsList() {
       {posts.length > 0 && (
         <ul className={classes.posts}>
           {posts.map((post) => (
-            <Post key={post.body} author={post.author} body={post.body} />
+            <Post key={post.id} id={post.id} author={post.author} body={post.body} />
           ))}
         </ul>
       )}
